@@ -1,0 +1,244 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* PÁGINA INICIAL */
+.home-box {
+    background: #ffffff;
+    padding: 40px 25px;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.home-box h1 {
+    color: #1e4fa3;
+    margin-bottom: 20px;
+}
+
+.home-box p {
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-principal {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #1e4fa3;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.btn-principal:hover {
+    background: #163c82;
+}
+
+/* RODAPÉ */
+.rodape {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f4f7;
+    color: #333;
+}
+
+/* TOPO */
+.topo {
+    background: #ffffff;
+    padding: 20px 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* CONTAINER DOS LOGOS */
+.logos {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* IMAGENS */
+.logos img {
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* CONTAINER PRINCIPAL */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1e4fa3;
+}
+
+/* FORMULÁRIO */
+form {
+    background: transparent;
+}
+
+/* FIELDSET (SEÇÕES) */
+fieldset {
+    background: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+    font-weight: bold;
+    color: #1e4fa3;
+    padding: 0 8px;
+    font-size: 16px;
+}
+
+/* LABELS */
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* INPUTS */
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="file"],
+select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #1e4fa3;
+}
+
+/* CHECKBOX */
+fieldset label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* ASSINATURA */
+#assinaturaCanvas {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 500px;
+    height: 180px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    background: #fafafa;
+    display: block;
+}
+
+/* BOTÃO */
+.assinatura-botoes {
+    margin-top: 10px;
+}
+
+#limparAssinatura {
+    padding: 8px 14px;
+    font-size: 14px;
+    background-color: #b0b0b0;
+    /* cinza institucional */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#limparAssinatura:hover {
+    background-color: #8e8e8e;
+}
+
+#limparAssinatura {
+    max-width: 20%;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #1e4fa3;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #163c82;
+}
+
+/* PÁGINA DE SUCESSO */
+.sucesso-box {
+    background: #ffffff;
+    padding: 40px 25px;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sucesso-box h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.sucesso-box p {
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.sucesso-box .info {
+    margin-top: 25px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+}

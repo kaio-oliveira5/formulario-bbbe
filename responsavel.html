@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha de Inscrição – Projeto Esportivo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main>
+        <header class="topo">
+            <div class="logos">
+                <img src="logo/Captura de tela 2025-08-25 142312.jpg" alt="Prefeitura">
+                <img src="logo/logo_redondo-removebg-preview.png" alt="Projeto">
+            </div>
+        </header>
+        <h1>Ficha de Inscrição – Etapa do Responsável</h1>
+
+        <form id="formInscricao">
+
+            <!-- DADOS DO ALUNO -->
+            <fieldset>
+                <legend>Dados do Aluno</legend>
+
+                <label for="fotoAluno">Foto do aluno</label>
+                <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*">
+
+                <label for="nomeAluno">Nome completo</label>
+                <input type="text" id="nomeAluno" name="nomeAluno">
+
+                <label for="dataNascimento">Data de nascimento</label>
+                <input type="date" id="dataNascimento" name="dataNascimento">
+
+                <label for="cpfAluno">CPF</label>
+                <input type="text" id="cpfAluno" name="cpfAluno">
+
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" name="endereco">
+
+                <label for="bairro">Bairro</label>
+                <input type="text" id="bairro" name="bairro">
+
+                <label for="escolaAluno">Escola do aluno</label>
+                <select id="escolaAluno" name="escolaAluno">
+                    <option value="">Selecione</option>
+                    <option value="">Selecione</option>
+                    <option value="">Selecione</option>
+                    <option value="">Selecione</option>
+                </select>
+            </fieldset>
+
+            <!-- DADOS DOS RESPONSÁVEIS -->
+            <fieldset>
+                <legend>Dados dos Responsáveis</legend>
+
+                <label for="nomePai">Nome do pai</label>
+                <input type="text" id="nomePai" name="nomePai">
+
+                <label for="telefonePai">Celular do pai</label>
+                <input type="tel" id="telefonePai" name="telefonePai">
+
+                <label for="nomeMae">Nome da mãe</label>
+                <input type="text" id="nomeMae" name="nomeMae">
+
+                <label for="telefoneMae">Celular da mãe</label>
+                <input type="tel" id="telefoneMae" name="telefoneMae">
+
+                <label for="contatoEmergencia">Contato de emergência</label>
+                <input type="text" id="contatoEmergencia" name="contatoEmergencia">
+
+                <label for="telefoneEmergencia">Telefone de emergência</label>
+                <input type="tel" id="telefoneEmergencia" name="telefoneEmergencia">
+            </fieldset>
+
+            <!-- NÚCLEO -->
+            <fieldset>
+                <legend>Núcleo</legend>
+
+                <label for="nucleo">Núcleo</label>
+                <select id="nucleo" name="nucleo">
+                    <option value="">Selecione</option>
+                    <option value="estudantek">Estudantek</option>
+                    <option value="sto-antonio-de-castro">Sto. Antônio de Castro</option>
+                </select>
+
+                <label for="turnoTreino">Turno do treino</label>
+                <select id="turnoTreino" name="turnoTreino">
+                    <option value="">Selecione</option>
+                    <option value="manha">Manhã</option>
+                    <option value="tarde">Tarde</option>
+                </select>
+            </fieldset>
+
+            <!-- AUTORIZAÇÕES -->
+            <fieldset>
+                <legend>Autorizações e Ciência</legend>
+
+                <label>
+                    <input type="checkbox" id="usoImagem" name="usoImagem">
+                    Autorizo o uso de imagem do aluno para fins institucionais.
+                </label>
+
+                <label>
+                    <input type="checkbox" id="cienteRegras" name="cienteRegras">
+                    Estou ciente de que faltas repetidas podem resultar na perda da vaga.
+                </label>
+            </fieldset>
+
+            <!-- ASSINATURA -->
+            <fieldset>
+                <legend>Assinatura do Responsável</legend>
+
+                <label for="nomeResponsavel">Nome completo do responsável</label>
+                <input type="text" id="nomeResponsavel" name="nomeResponsavel">
+
+                <label for="dataAssinatura">Data</label>
+                <input type="date" id="dataAssinatura" name="dataAssinatura">
+
+                <canvas id="assinaturaCanvas"></canvas>
+
+                <div class="assinatura-botoes">
+                    <button type="button" id="limparAssinatura">Limpar assinatura</button>
+                </div>
+            </fieldset>
+
+            <button type="submit">Enviar para a Escola</button>
+
+        </form>
+
+    </main>
+
+    <footer class="rodape">
+        <p>
+            Sistema desenvolvido por Kaio Oliveira — 2026<br>
+            Secretaria de Esportes, Lazer e Juventude
+        </p>
+    </footer>
+
+    <script src="js/envio-responsavel.js"></script>
+    <script src="js/assinatura-responsavel.js"></script>
+</body>
+
+</html>
