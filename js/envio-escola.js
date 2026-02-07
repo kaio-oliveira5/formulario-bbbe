@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const ctx = canvas.getContext('2d');
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -32,32 +30,35 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 📷 Assinatura em base64
-        const assinaturaBase64 = canvas.toDataURL('image/png');
+        // 📥 Buscar inscrição existente
+        const inscricaoSalva = localStorage.getItem('inscricaoProjeto');
 
-        // 📦 Objeto final da escola
-        const confirmacaoEscola = {
+        if (!inscricaoSalva) {
+            alert('Nenhuma inscrição encontrada.');
+            return;
+        }
+
+        const dados = JSON.parse(inscricaoSalva);
+
+        // 📷 Assinatura em base64
+        dados.confirmacaoEscola = {
             dataAssinaturaEscola: dataAssinatura.value,
-            assinaturaEscola: assinaturaBase64,
-            status: 'confirmado_escola',
+            assinaturaEscola: canvas.toDataURL('image/png'),
             confirmadoEm: new Date().toISOString()
         };
 
-        console.log('Confirmação da escola:', confirmacaoEscola);
+        // 🔄 Atualiza status
+        dados.status = 'confirmado_escola';
 
-        /*
-            🔜 AQUI ENTRA O FIREBASE (depois):
-            - buscar inscrição pelo ID da URL
-            - atualizar documento com:
-            confirmacaoEscola
-            status = confirmado_escola
-        */
+        // 💾 Salva novamente no localStorage
+        localStorage.setItem('inscricaoProjeto', JSON.stringify(dados));
 
-        // ✅ Redireciona para sucesso
+        console.log('Inscrição atualizada pela escola:', dados);
+
+        // ✅ Redireciona
         window.location.href = 'sucesso-escola.html';
     });
 
-    // 🧼 Verifica se o canvas está vazio
     function canvasVazio(canvas) {
         const blank = document.createElement('canvas');
         blank.width = canvas.width;

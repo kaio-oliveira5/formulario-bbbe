@@ -75,8 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // LIMPAR
     if (btnLimpar) {
         btnLimpar.addEventListener('click', () => {
+            // reseta transformação
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+            // limpa tudo de verdade
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
+
+            // reaplica escala e estilos
+            ajustarCanvas();
         });
     }
 });

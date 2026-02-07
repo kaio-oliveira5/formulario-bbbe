@@ -17,29 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.lineWidth = 2;
         ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
         ctx.strokeStyle = '#000';
     }
 
     ajustarCanvas();
     window.addEventListener('resize', ajustarCanvas);
 
-    // 🔥 FUNÇÃO CORRIGIDA (remove o deslocamento)
+    // ✅ POSIÇÃO CORRETA (SEM OFFSET)
     function posicao(e) {
         const rect = canvas.getBoundingClientRect();
 
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-
         if (e.touches) {
             return {
-                x: (e.touches[0].clientX - rect.left) * scaleX,
-                y: (e.touches[0].clientY - rect.top) * scaleY
+                x: e.touches[0].clientX - rect.left,
+                y: e.touches[0].clientY - rect.top
             };
         }
 
         return {
-            x: (e.clientX - rect.left) * scaleX,
-            y: (e.clientY - rect.top) * scaleY
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
         };
     }
 
@@ -61,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mouseup', () => desenhando = false);
     canvas.addEventListener('mouseleave', () => desenhando = false);
 
-    // ===== TOQUE (CELULAR) =====
+    // ===== TOQUE =====
     canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         desenhando = true;
@@ -80,11 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     canvas.addEventListener('touchend', () => desenhando = false);
 
-    // ===== LIMPAR ASSINATURA =====
+    // ===== LIMPAR =====
     const btnLimpar = document.getElementById('limparAssinatura');
     if (btnLimpar) {
         btnLimpar.addEventListener('click', () => {
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ajustarCanvas(); // reaplica escala e estilo
         });
     }
 });

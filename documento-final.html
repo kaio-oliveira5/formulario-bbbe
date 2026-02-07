@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Documento Final – Projeto BBBE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/documento-final.css">
+</head>
+
+<body>
+
+    <!-- ÁREA A4 -->
+    <div id="pagina-a4">
+
+        <!-- CABEÇALHO -->
+        <header class="cabecalho">
+            <img src="logo/Captura de tela 2025-08-25 142312.jpg" alt="Logo Projeto" crossorigin="anonymous">
+            <img src="logo/logo_redondo-removebg-preview.png" alt="Logo Instituição" crossorigin="anonymous">
+        </header>
+
+        <!-- DOCUMENTO -->
+        <main id="documento">
+
+            <h1>Ficha de Inscrição – Projeto BBBE</h1>
+
+            <!-- ALUNO -->
+            <section class="bloco">
+                <h2>Dados do Aluno</h2>
+
+                <div class="foto-aluno">
+                    <p><strong>Foto do Aluno</strong></p>
+                    <img id="fotoAlunoDocumento" alt="Foto do aluno">
+                </div>
+
+                <p><strong>Nome:</strong> <span id="alunoNome"></span></p>
+                <p><strong>Data de Nascimento:</strong> <span id="alunoNascimento"></span></p>
+                <p><strong>Documento:</strong> <span id="alunoDocumento"></span></p>
+
+                <p><strong>Endereço:</strong> <span id="alunoEndereco"></span></p>
+                <p><strong>Número:</strong> <span id="alunoNumero"></span></p>
+                <p><strong>Complemento:</strong> <span id="alunoComplemento"></span></p>
+
+                <p><strong>Bairro:</strong> <span id="alunoBairro"></span></p>
+                <p><strong>Escola:</strong> <span id="alunoEscola"></span></p>
+            </section>
+
+            <!-- RESPONSÁVEIS -->
+            <section class="bloco">
+                <h2>Responsáveis</h2>
+
+                <p><strong>Pai:</strong> <span id="paiNome"></span></p>
+                <p><strong>Telefone:</strong> <span id="paiTelefone"></span></p>
+
+                <p><strong>Mãe:</strong> <span id="maeNome"></span></p>
+                <p><strong>Telefone:</strong> <span id="maeTelefone"></span></p>
+
+                <p><strong>Contato de Emergência:</strong> <span id="emergenciaNome"></span></p>
+                <p><strong>Telefone:</strong> <span id="emergenciaTelefone"></span></p>
+            </section>
+
+            <!-- NÚCLEO -->
+            <section class="bloco">
+                <h2>Núcleo</h2>
+                <p><strong>Núcleo:</strong> <span id="nucleo"></span></p>
+                <p><strong>Turno:</strong> <span id="turno"></span></p>
+            </section>
+
+            <!-- AUTORIZAÇÕES -->
+            <div class="bloco">
+                <h2>Autorizações</h2>
+
+                <p id="usoImagem"></p>
+                <p id="cienteRegras"></p>
+            </div>
+
+            <!-- ASSINATURAS -->
+            <section class="bloco assinaturas">
+                <h2>Assinaturas</h2>
+
+                <div class="assinatura-box">
+                    <p>Responsável</p>
+                    <img id="assinaturaResponsavel" alt="Assinatura do Responsável">
+                </div>
+
+                <div class="assinatura-box">
+                    <p>Escola</p>
+                    <img id="assinaturaEscola" alt="Assinatura da Escola">
+                </div>
+            </section>
+
+            <!-- CONTROLE -->
+            <section class="bloco">
+                <h2>Controle Administrativo</h2>
+                <p><strong>Status:</strong> <span id="status"></span></p>
+                <p><strong>Data da inscrição:</strong> <span id="criadoEm"></span></p>
+                <p><strong>Confirmação da escola:</strong> <span id="confirmadoEm"></span></p>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- AÇÕES (FORA DO PDF) -->
+    <div class="pdf">
+        <button id="gerarPdf">📄 Baixar PDF</button>
+    </div>
+
+    <script src="js/documento-final.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/gerar-pdf.js"></script>
+</body>
+
+</html>

@@ -50,17 +50,6 @@
 
             </fieldset>
 
-            <!-- DOCUMENTO DO RESPONSÁVEL -->
-            <fieldset>
-                <legend>Documento Assinado pelo Responsável</legend>
-
-                <p>
-                    <a id="linkDocumento" href="#" target="_blank">
-                        📄 Visualizar documento assinado
-                    </a>
-                </p>
-            </fieldset>
-
 
             <form id="formEscola">
 
@@ -72,7 +61,7 @@
                     <input type="date" id="dataAssinatura" required>
 
                     <label>Declaração</label>
-                    <input type="checkbox" id="declaracao" name="declaracao">
+                    <input type="checkbox" id="declaracao" name="declaracao" required>
                     <p class="dec"> Declaro que o aluno acima informado é estudante regularmente matriculado nesta
                         unidade escolar.</p>
 
@@ -96,11 +85,12 @@
 
     <footer class="rodape">
         <p>
-            Sistema desenvolvido por Kaio Oliveira — 2026<br>
-            Secretaria de Esportes, Lazer e Juventude
+            © 2026 Secretaria de Esportes, Lazer e Juventude. Todos os direitos reservados.<br>
+        <p class="sistema">Sistema desenvolvido por Kaio Oliveira</p>
         </p>
     </footer>
 
+    <script src="js/carregar-escola.js"></script>
     <script src="js/assinatura-escola.js"></script>
     <script src="js/envio-escola.js"></script>
 </body>

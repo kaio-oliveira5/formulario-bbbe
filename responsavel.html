@@ -18,6 +18,7 @@
                 <img src="logo/logo_redondo-removebg-preview.png" alt="Projeto">
             </div>
         </header>
+
         <h1>Ficha de Inscrição – Etapa do Responsável</h1>
 
         <form id="formInscricao">
@@ -27,29 +28,46 @@
                 <legend>Dados do Aluno</legend>
 
                 <label for="fotoAluno">Foto do aluno</label>
-                <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*">
+                <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*" required>
 
                 <label for="nomeAluno">Nome completo</label>
-                <input type="text" id="nomeAluno" name="nomeAluno">
+                <input type="text" id="nomeAluno" name="nomeAluno" required>
 
                 <label for="dataNascimento">Data de nascimento</label>
-                <input type="date" id="dataNascimento" name="dataNascimento">
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
 
-                <label for="cpfAluno">CPF</label>
-                <input type="text" id="cpfAluno" name="cpfAluno">
+                <label for="tipoDocumentoAluno">Documento do aluno</label>
+                <select id="tipoDocumentoAluno" name="tipoDocumentoAluno" required>
+                    <option value="">Selecione</option>
+                    <option value="cpf">CPF</option>
+                    <option value="rg">RG</option>
+                </select>
+                <small class="erro" id="erroCpfAluno"></small>
+
+                <label for="documentoAluno">Número do documento</label>
+                <input type="text" id="documentoAluno" name="documentoAluno" inputmode="numeric"
+                    placeholder="Somente números" required>
 
                 <label for="endereco">Endereço</label>
-                <input type="text" id="endereco" name="endereco">
+                <input type="text" id="endereco" name="endereco" required>
+
+                <label for="numero">Número</label>
+                <input type="text" id="numero" name="numero" inputmode="numeric" placeholder="Número da residência"
+                    required>
+
+                <label for="complemento">Complemento</label>
+                <input type="text" id="complemento" name="complemento">
 
                 <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="bairro">
+                <input type="text" id="bairro" name="bairro" required>
 
                 <label for="escolaAluno">Escola do aluno</label>
-                <select id="escolaAluno" name="escolaAluno">
+                <select id="escolaAluno" name="escolaAluno" required>
                     <option value="">Selecione</option>
-                    <option value="">Selecione</option>
-                    <option value="">Selecione</option>
-                    <option value="">Selecione</option>
+                    <option value="escola-1">Escola 1</option>
+                    <option value="escola-2">Escola 2</option>
+                    <option value="escola-3">Escola 3</option>
+                    <option value="escola-4">Escola 4</option>
                 </select>
             </fieldset>
 
@@ -58,22 +76,25 @@
                 <legend>Dados dos Responsáveis</legend>
 
                 <label for="nomePai">Nome do pai</label>
-                <input type="text" id="nomePai" name="nomePai">
+                <input type="text" id="nomePai" name="nomePai" required>
 
                 <label for="telefonePai">Celular do pai</label>
-                <input type="tel" id="telefonePai" name="telefonePai">
+                <input type="text" id="telefonePai" name="telefonePai" inputmode="numeric" placeholder="(00) 00000-0000"
+                    required>
 
                 <label for="nomeMae">Nome da mãe</label>
-                <input type="text" id="nomeMae" name="nomeMae">
+                <input type="text" id="nomeMae" name="nomeMae" required>
 
                 <label for="telefoneMae">Celular da mãe</label>
-                <input type="tel" id="telefoneMae" name="telefoneMae">
+                <input type="text" id="telefoneMae" name="telefoneMae" inputmode="numeric" placeholder="(00) 00000-0000"
+                    required>
 
                 <label for="contatoEmergencia">Contato de emergência</label>
                 <input type="text" id="contatoEmergencia" name="contatoEmergencia">
 
                 <label for="telefoneEmergencia">Telefone de emergência</label>
-                <input type="tel" id="telefoneEmergencia" name="telefoneEmergencia">
+                <input type="text" id="telefoneEmergencia" name="telefoneEmergencia" inputmode="numeric"
+                    placeholder="(00) 00000-0000">
             </fieldset>
 
             <!-- NÚCLEO -->
@@ -81,14 +102,14 @@
                 <legend>Núcleo</legend>
 
                 <label for="nucleo">Núcleo</label>
-                <select id="nucleo" name="nucleo">
+                <select id="nucleo" name="nucleo" required>
                     <option value="">Selecione</option>
                     <option value="estudantek">Estudantek</option>
                     <option value="sto-antonio-de-castro">Sto. Antônio de Castro</option>
                 </select>
 
                 <label for="turnoTreino">Turno do treino</label>
-                <select id="turnoTreino" name="turnoTreino">
+                <select id="turnoTreino" name="turnoTreino" required>
                     <option value="">Selecione</option>
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
@@ -100,12 +121,12 @@
                 <legend>Autorizações e Ciência</legend>
 
                 <label>
-                    <input type="checkbox" id="usoImagem" name="usoImagem">
+                    <input type="checkbox" id="usoImagem" name="usoImagem" required>
                     Autorizo o uso de imagem do aluno para fins institucionais.
                 </label>
 
                 <label>
-                    <input type="checkbox" id="cienteRegras" name="cienteRegras">
+                    <input type="checkbox" id="cienteRegras" name="cienteRegras" required>
                     Estou ciente de que faltas repetidas podem resultar na perda da vaga.
                 </label>
             </fieldset>
@@ -115,19 +136,23 @@
                 <legend>Assinatura do Responsável</legend>
 
                 <label for="nomeResponsavel">Nome completo do responsável</label>
-                <input type="text" id="nomeResponsavel" name="nomeResponsavel">
+                <input type="text" id="nomeResponsavel" name="nomeResponsavel" required>
 
                 <label for="dataAssinatura">Data</label>
-                <input type="date" id="dataAssinatura" name="dataAssinatura">
+                <input type="date" id="dataAssinatura" name="dataAssinatura" required>
 
                 <canvas id="assinaturaCanvas"></canvas>
 
                 <div class="assinatura-botoes">
-                    <button type="button" id="limparAssinatura">Limpar assinatura</button>
+                    <button type="button" id="limparAssinatura">
+                        Limpar assinatura
+                    </button>
                 </div>
             </fieldset>
 
-            <button type="submit">Enviar para a Escola</button>
+            <button type="submit" id="btnEnviar">
+                Enviar para a Escola
+            </button>
 
         </form>
 
@@ -135,13 +160,15 @@
 
     <footer class="rodape">
         <p>
-            Sistema desenvolvido por Kaio Oliveira — 2026<br>
-            Secretaria de Esportes, Lazer e Juventude
+            © 2026 Secretaria de Esportes, Lazer e Juventude. Todos os direitos reservados.<br>
+        <p class="sistema">Sistema desenvolvido por Kaio Oliveira</p>
         </p>
     </footer>
 
     <script src="js/envio-responsavel.js"></script>
     <script src="js/assinatura-responsavel.js"></script>
+    <script src="js/mascara.js"></script>
+    <script src="js/validacao-responsavel.js"></script>
 </body>
 
 </html>

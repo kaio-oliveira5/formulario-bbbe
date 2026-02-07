@@ -188,10 +188,16 @@ fieldset a:hover {
 
 /* RODAPÉ */
 .rodape {
-    margin-top: 40px;
+    margin-top: 80px;
     margin-bottom: 20px;
     text-align: center;
     font-size: 13px;
+    color: #666;
+}
+
+.rodape .sistema {
+    margin-top: 6px;
+    font-size: 10px;
     color: #666;
 }
 
