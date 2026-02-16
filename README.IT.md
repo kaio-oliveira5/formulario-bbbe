@@ -1,6 +1,6 @@
-📘 Leia este arquivo README em:
-- 🇧🇷 Português (este arquivo)
-- 🇮🇹 Italiano → [README.it.md](README.it.md)
+📘 Leggi questo README in:
+- 🇮🇹 Italiano (questo file)
+- 🇧🇷 Portoghese → [README.md](README.md)
 
 
 # Projeto BBBE – Bom de Bola Bom na Escola ⚽📄
