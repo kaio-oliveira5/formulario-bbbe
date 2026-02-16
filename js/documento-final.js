@@ -1,100 +1,156 @@
-document.addEventListener('DOMContentLoaded', () => {
+import { db } from './firebase.js';
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    const dados = JSON.parse(localStorage.getItem('inscricaoProjeto'));
+// (Opcional, só para exibir bonito na tela)
+const ESCOLAS_MAP = {
+    escola_antonio_adriano_guerra: 'Escola Antônio Adriano Guerra',
+    escola_aparecida: 'Escola Aparecida',
+    escola_carlos_barbosa: 'Escola Carlos Barbosa',
+    escola_dom_vital: 'Escola Dom Vital',
+    escola_elisa_tramontina: 'Escola Elisa Tramontina',
+    escola_jose_chies: 'Escola Prefeito José Chies',
+    escola_papepi: 'Escola Padre Pedro Piccoli',
+    escola_sao_roque: 'Escola São Roque',
+    escola_santa_rosa: 'Escola Santa Rosa',
+    escola_cardeal_arcoverde: 'Escola Cardeal Arcoverde',
+    escola_bordini: 'Escola Salvador Bordini'
+};
 
-    if (!dados) {
-        alert('Nenhuma inscrição encontrada.');
-        return;
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // ✅ 1) ID por URL
+        const params = new URLSearchParams(window.location.search);
+        const inscricaoId = params.get('id');
+
+        let dados = null;
+
+        // ✅ 2) Se tiver ID, busca no Firestore
+        if (inscricaoId) {
+            const docRef = doc(db, 'inscricoes', inscricaoId);
+            const snap = await getDoc(docRef);
+
+            if (!snap.exists()) {
+                alert('Inscrição não encontrada. Verifique o link.');
+                return;
+            }
+            dados = snap.data();
+        } else {
+            // ✅ 3) Fallback: localStorage (testes)
+            const local = localStorage.getItem('inscricaoProjeto');
+            if (!local) {
+                alert('Nenhuma inscrição encontrada (sem ID na URL e sem localStorage).');
+                return;
+            }
+            dados = JSON.parse(local);
+        }
+
+        preencherDocumento(dados);
+
+    } catch (err) {
+        console.error('Erro ao carregar documento final:', err);
+        alert('Erro ao carregar o documento final.');
     }
-
-    console.log('📄 Dados carregados:', dados);
-
-    // ==========================
-    // DADOS DO ALUNO
-    // ==========================
-
-    if (dados.aluno?.foto) {
-        document.getElementById('fotoAlunoDocumento').src = dados.aluno.foto;
-    }
-    document.getElementById('alunoNome').innerText = dados.aluno?.nome || '';
-    document.getElementById('alunoNascimento').innerText = formatarData(dados.aluno?.dataNascimento);
-
-    document.getElementById('alunoDocumento').innerText =
-        `${dados.aluno?.documento?.tipo || ''} - ${dados.aluno?.documento?.numero || ''}`;
-
-    document.getElementById('alunoEndereco').innerText = dados.aluno?.endereco?.rua || '';
-    document.getElementById('alunoNumero').innerText = dados.aluno?.endereco?.numero || '';
-    document.getElementById('alunoComplemento').innerText = dados.aluno?.endereco?.complemento || '';
-    document.getElementById('alunoBairro').innerText = dados.aluno?.endereco?.bairro || '';
-    document.getElementById('alunoEscola').innerText = dados.aluno?.escola || '';
-
-    // ==========================
-    // RESPONSÁVEIS
-    // ==========================
-    document.getElementById('paiNome').innerText = dados.responsaveis?.pai?.nome || '';
-    document.getElementById('paiTelefone').innerText = dados.responsaveis?.pai?.telefone || '';
-
-    document.getElementById('maeNome').innerText = dados.responsaveis?.mae?.nome || '';
-    document.getElementById('maeTelefone').innerText = dados.responsaveis?.mae?.telefone || '';
-
-    document.getElementById('emergenciaNome').innerText = dados.responsaveis?.emergencia?.nome || '';
-    document.getElementById('emergenciaTelefone').innerText = dados.responsaveis?.emergencia?.telefone || '';
-
-    // ==========================
-    // NÚCLEO
-    // ==========================
-    document.getElementById('nucleo').innerText = dados.nucleo || '';
-    document.getElementById('turno').innerText = dados.turno || '';
-
-    // ==========================
-    // AUTORIZAÇÕES
-    // ==========================
-    document.getElementById('usoImagem').innerText =
-        dados.autorizacoes?.usoImagem
-            ? '✔ Responsável autoriza o uso de imagem'
-            : '✖ Responsável NÃO autoriza o uso de imagem';
-
-    document.getElementById('cienteRegras').innerText =
-        dados.autorizacoes?.cienteRegras
-            ? '✔ Responsável declara estar ciente das regras'
-            : '✖ Responsável NÃO declarou ciência das regras';
-
-    // ==========================
-    // ASSINATURA DO RESPONSÁVEL
-    // ==========================
-    if (dados.assinaturaResponsavel?.imagem) {
-        document.getElementById('assinaturaResponsavel').src =
-            dados.assinaturaResponsavel.imagem;
-    }
-
-    // ==========================
-    // ASSINATURA DA ESCOLA
-    // ==========================
-    if (dados.confirmacaoEscola?.assinaturaEscola) {
-        document.getElementById('assinaturaEscola').src =
-            dados.confirmacaoEscola.assinaturaEscola;
-    }
-
-    // ==========================
-    // STATUS / CONTROLE ADM
-    // ==========================
-    document.getElementById('status').innerText =
-        traduzirStatus(dados.status);
-
-    document.getElementById('criadoEm').innerText =
-        formatarDataHora(dados.criadoEm);
-
-    document.getElementById('confirmadoEm').innerText =
-        dados.confirmacaoEscola?.confirmadoEm
-            ? formatarDataHora(dados.confirmacaoEscola.confirmadoEm)
-            : 'Ainda não confirmado pela escola';
-
 });
 
+function preencherDocumento(dados) {
+    // FOTO
+    const fotoEl = document.getElementById('fotoAlunoDocumento');
+    if (fotoEl && dados.aluno?.foto) fotoEl.src = dados.aluno.foto;
 
-// ==========================
-// FUNÇÕES AUXILIARES
-// ==========================
+    // ALUNO
+    setText('alunoNome', dados.aluno?.nome);
+    setText('alunoNascimento', formatarData(dados.aluno?.dataNascimento));
+
+    const docTipo = (dados.aluno?.documento?.tipo || '').toUpperCase();
+    const docNum = (dados.aluno?.documento?.numero || '');
+    setText('alunoDocumento', docTipo && docNum ? `${docTipo} - ${docNum}` : `${docTipo}${docNum}`);
+
+    setText('alunoEndereco', dados.aluno?.endereco?.rua);
+    setText('alunoNumero', dados.aluno?.endereco?.numero);
+    setText('alunoComplemento', dados.aluno?.endereco?.complemento);
+    setText('alunoBairro', dados.aluno?.endereco?.bairro);
+
+    // Escola (mostra bonito)
+    const escolaId = (dados.aluno?.escola || '').trim();
+    setText('alunoEscola', ESCOLAS_MAP[escolaId] || escolaId);
+
+    // ✅ SAÚDE
+    const possui = (dados.aluno?.saude?.possui || '').toLowerCase(); // "sim" | "nao"
+    const detalhes = (dados.aluno?.saude?.detalhes || '').trim();
+
+    setText(
+        'alunoSaudePossui',
+        possui === 'sim' ? 'Sim' : (possui === 'nao' ? 'Não' : '')
+    );
+
+    const linhaDetalhes = document.getElementById('linhaSaudeDetalhes');
+    if (linhaDetalhes) {
+        if (possui === 'sim' && detalhes) {
+            linhaDetalhes.style.display = 'block';
+            setText('alunoSaudeDetalhes', detalhes);
+        } else {
+            linhaDetalhes.style.display = 'none';
+            setText('alunoSaudeDetalhes', '');
+        }
+    }
+
+    // RESPONSÁVEIS
+    setText('paiNome', dados.responsaveis?.pai?.nome);
+    setText('paiTelefone', dados.responsaveis?.pai?.telefone);
+
+    setText('maeNome', dados.responsaveis?.mae?.nome);
+    setText('maeTelefone', dados.responsaveis?.mae?.telefone);
+
+    setText('emergenciaNome', dados.responsaveis?.emergencia?.nome);
+    setText('emergenciaTelefone', dados.responsaveis?.emergencia?.telefone);
+
+    // NÚCLEO
+    setText('nucleo', dados.nucleo);
+    setText('turno', dados.turno);
+
+    // AUTORIZAÇÕES
+    const usoImagem = !!dados.autorizacoes?.usoImagem;
+    const cienteRegras = !!dados.autorizacoes?.cienteRegras;
+
+    const usoImagemEl = document.getElementById('usoImagem');
+    if (usoImagemEl) {
+        usoImagemEl.innerText = usoImagem
+            ? '✔ Responsável autoriza o uso de imagem'
+            : '✖ Responsável NÃO autoriza o uso de imagem';
+    }
+
+    const cienteRegrasEl = document.getElementById('cienteRegras');
+    if (cienteRegrasEl) {
+        cienteRegrasEl.innerText = cienteRegras
+            ? '✔ Responsável declara estar ciente das regras'
+            : '✖ Responsável NÃO declarou ciência das regras';
+    }
+
+    // ASSINATURAS
+    const assResp = document.getElementById('assinaturaResponsavel');
+    if (assResp && dados.assinaturaResponsavel?.imagem) {
+        assResp.src = dados.assinaturaResponsavel.imagem;
+    }
+
+    const assEsc = document.getElementById('assinaturaEscola');
+    if (assEsc && dados.confirmacaoEscola?.assinaturaEscola) {
+        assEsc.src = dados.confirmacaoEscola.assinaturaEscola;
+    }
+
+    // CONTROLE
+    setText('status', traduzirStatus(dados.status));
+    setText('criadoEm', formatarDataHora(dados.criadoEm));
+
+    const confirmado = dados.confirmacaoEscola?.confirmadoEm;
+    setText('confirmadoEm', confirmado ? formatarDataHora(confirmado) : 'Ainda não confirmado pela escola');
+}
+
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerText = value ?? '';
+}
+
 function formatarData(data) {
     if (!data) return '';
     return new Date(data).toLocaleDateString('pt-BR');
@@ -110,5 +166,5 @@ function traduzirStatus(status) {
         aguardando_escola: 'Aguardando confirmação da escola',
         confirmado_escola: 'Confirmado pela escola'
     };
-    return mapa[status] || status;
+    return mapa[status] || status || '';
 }

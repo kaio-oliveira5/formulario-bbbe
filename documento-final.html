@@ -15,8 +15,8 @@
 
         <!-- CABEÇALHO -->
         <header class="cabecalho">
-            <img src="logo/Captura de tela 2025-08-25 142312.jpg" alt="Logo Projeto" crossorigin="anonymous">
-            <img src="logo/logo_redondo-removebg-preview.png" alt="Logo Instituição" crossorigin="anonymous">
+            <img src="logo/Captura de tela 2025-08-25 142312.jpg" alt="Logo Prefeitura" crossorigin="anonymous">
+            <img src="logo/logo_redondo-removebg-preview.png" alt="Logo Projeto" crossorigin="anonymous">
         </header>
 
         <!-- DOCUMENTO -->
@@ -43,6 +43,15 @@
 
                 <p><strong>Bairro:</strong> <span id="alunoBairro"></span></p>
                 <p><strong>Escola:</strong> <span id="alunoEscola"></span></p>
+
+                <!-- ✅ SAÚDE (NOVO) -->
+                <p><strong>Problema de saúde:</strong> <span id="alunoSaudePossui"></span></p>
+
+                <!-- Essa linha some se for "não" -->
+                <p id="linhaSaudeDetalhes">
+                    <strong>Descrição (se houver):</strong>
+                    <span id="alunoSaudeDetalhes"></span>
+                </p>
             </section>
 
             <!-- RESPONSÁVEIS -->
@@ -67,12 +76,11 @@
             </section>
 
             <!-- AUTORIZAÇÕES -->
-            <div class="bloco">
+            <section class="bloco">
                 <h2>Autorizações</h2>
-
                 <p id="usoImagem"></p>
                 <p id="cienteRegras"></p>
-            </div>
+            </section>
 
             <!-- ASSINATURAS -->
             <section class="bloco assinaturas">
@@ -105,7 +113,9 @@
         <button id="gerarPdf">📄 Baixar PDF</button>
     </div>
 
-    <script src="js/documento-final.js"></script>
+    <!-- ✅ Pré-visualização:
+        esta página já é a prévia; o PDF baixa o que está em #pagina-a4 -->
+    <script type="module" src="js/documento-final.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="js/gerar-pdf.js"></script>

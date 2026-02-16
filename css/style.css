@@ -56,7 +56,6 @@
     color: #666;
 }
 
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f2f4f7;
@@ -86,6 +85,7 @@ body {
 .logos img {
     max-height: 250px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
 }
 
@@ -108,7 +108,7 @@ form {
     background: transparent;
 }
 
-/* FIELDSET (SEÇÕES) */
+/* FIELDSET */
 fieldset {
     background: #ffffff;
     border: none;
@@ -165,6 +165,55 @@ fieldset label input[type="checkbox"] {
     margin-right: 8px;
 }
 
+/* ===== SAÚDE ===== */
+.saude-box {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.saude-opcoes {
+    margin-top: 8px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.saude-opcoes label {
+    margin-top: 0;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.saude-opcoes input[type="radio"] {
+    transform: scale(1.05);
+}
+
+#saudeDetalhesBox {
+    margin-top: 12px;
+}
+
+#saudeDetalhes {
+    margin-top: 6px;
+}
+
+.saude-titulo {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+}
+
+#erroSaudeDetalhes {
+    display: none;
+    color: #d93025;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
 /* ASSINATURA */
 #assinaturaCanvas {
     margin-top: 15px;
@@ -177,7 +226,7 @@ fieldset label input[type="checkbox"] {
     display: block;
 }
 
-/* BOTÃO */
+/* BOTÃO LIMPAR */
 .assinatura-botoes {
     margin-top: 10px;
 }
@@ -186,21 +235,18 @@ fieldset label input[type="checkbox"] {
     padding: 8px 14px;
     font-size: 14px;
     background-color: #b0b0b0;
-    /* cinza institucional */
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    max-width: 150px;
 }
 
 #limparAssinatura:hover {
     background-color: #8e8e8e;
 }
 
-#limparAssinatura {
-    max-width: 20%;
-}
-
+/* BOTÃO PRINCIPAL */
 button {
     width: 100%;
     padding: 15px;
@@ -223,6 +269,7 @@ button[disabled] {
     cursor: not-allowed;
 }
 
+/* LOADING */
 .botao-loading {
     pointer-events: none;
 }
@@ -236,7 +283,7 @@ button[disabled] {
     border-radius: 50%;
     display: inline-block;
     margin-left: 10px;
-    animation: spin 5s linear infinite;
+    animation: spin 1s linear infinite;
     vertical-align: middle;
 }
 
@@ -273,7 +320,9 @@ button[disabled] {
     color: #555;
 }
 
-/* RESPONSIVO */
+/* ===== RESPONSIVO ===== */
+
+/* CELULAR */
 @media (max-width: 600px) {
     h1 {
         font-size: 20px;
@@ -281,5 +330,34 @@ button[disabled] {
 
     fieldset {
         padding: 15px;
+    }
+
+    .logos {
+        gap: 12px;
+    }
+
+    .logos img {
+        max-height: 140px;
+    }
+
+    #limparAssinatura {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #assinaturaCanvas {
+        height: 160px;
+    }
+}
+
+/* TABLET */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .logos img {
+        max-height: 200px;
+        flex: 1 1 220px;
+    }
+
+    #limparAssinatura {
+        max-width: 260px;
     }
 }

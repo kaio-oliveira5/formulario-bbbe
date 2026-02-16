@@ -64,11 +64,78 @@
                 <label for="escolaAluno">Escola do aluno</label>
                 <select id="escolaAluno" name="escolaAluno" required>
                     <option value="">Selecione</option>
-                    <option value="escola-1">Escola 1</option>
-                    <option value="escola-2">Escola 2</option>
-                    <option value="escola-3">Escola 3</option>
-                    <option value="escola-4">Escola 4</option>
+
+
+                    <option value="escola_antonio_adriano_guerra">
+                        Escola Antônio Adriano Guerra
+                    </option>
+
+                    <option value="escola_aparecida">
+                        Escola Aparecida
+                    </option>
+
+                    <option value="escola_carlos_barbosa">
+                        Escola Carlos Barbosa
+                    </option>
+
+                    <option value="escola_cardeal_arcoverde">
+                        Escola Cardeal Arcoverde
+                    </option>
+
+                    <option value="escola_dom_vital">
+                        Escola Dom Vital
+                    </option>
+
+                    <option value="escola_elisa_tramontina">
+                        Escola Elisa Tramontina
+                    </option>
+
+                    <option value="escola_jose_chies">
+                        Escola Prefeito José Chies
+                    </option>
+
+                    <option value="escola_papepi">
+                        Escola Padre Pedro Piccoli
+                    </option>
+
+                    <option value="escola_sao_roque">
+                        Escola São Roque
+                    </option>
+
+                    <option value="escola_bordini">
+                        Escola Salvador Bordini
+                    </option>
+
+                    <option value="escola_santa_rosa">
+                        Escola Santa Rosa
+                    </option>
+
                 </select>
+
+                <!-- SAÚDE (NOVO) -->
+                <div class="saude-box">
+                    <label class="saude-titulo" id="saudeTitulo">O aluno possui algum problema de saúde?</label>
+
+                    <div class="saude-opcoes" role="radiogroup" aria-labelledby="saudeTitulo">
+                        <label for="saudeNao">
+                            <input type="radio" id="saudeNao" name="saudePossui" value="nao" required>
+                            Não
+                        </label>
+
+                        <label for="saudeSim">
+                            <input type="radio" id="saudeSim" name="saudePossui" value="sim">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div id="saudeDetalhesBox" style="display:none;">
+                        <label for="saudeDetalhes">Se sim, descreva o problema de saúde.</label>
+                        <input type="text" id="saudeDetalhes" name="saudeDetalhes">
+                        <small class="erro" id="erroSaudeDetalhes" style="display:none;"></small>
+                    </div>
+                </div>
+                <!-- /SAÚDE -->
+
             </fieldset>
 
             <!-- DADOS DOS RESPONSÁVEIS -->
@@ -151,7 +218,7 @@
             </fieldset>
 
             <button type="submit" id="btnEnviar">
-                Enviar para a Escola
+                Enviar para a escola
             </button>
 
         </form>
@@ -165,10 +232,12 @@
         </p>
     </footer>
 
-    <script src="js/envio-responsavel.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/envio-responsavel.js"></script>
     <script src="js/assinatura-responsavel.js"></script>
     <script src="js/mascara.js"></script>
     <script src="js/validacao-responsavel.js"></script>
+    <script src="js/saude.js"></script>
 </body>
 
 </html>
