@@ -112,7 +112,7 @@ A secretaria recebe acesso ao documento final da inscrição.
 
 * Dados completos do aluno
 * Informações dos responsáveis
-* Dados do torneio
+* Dados do projeto
 * Foto do aluno
 * Assinaturas digitais
 * Informações escolares
